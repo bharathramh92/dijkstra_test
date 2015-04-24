@@ -31,30 +31,34 @@ class MinHeap:
         r=self.right(i)
         smallest=i
 
-        print("data size %s l %s r %s i %s" %(len(self.data), l, r, i))
-        for x in self.data:
-            print("current data " , x.name)
+        # print("data size %s l %s r %s i %s" %(len(self.data), l, r, i))
+        # for x in self.data:
+        #     print("current data " , x.name)
 
         if l<=self.aHeapsize :
             if self.key(self.data[l])<self.key(self.data[i]):
                 smallest=l
-            #     self.data[l].position = i
-            #     self.data[smallest].position = l
-            # else:
-            #     self.data[l].position = l
-            #     self.data[smallest].position = i
+                self.data[l].position = i
+                self.data[smallest].position = l
+            else:
+                self.data[l].position = l
+                self.data[smallest].position = i
+        else:
+            self.data[smallest] = i
 
         if r<=self.aHeapsize:
             if self.key(self.data[r])<self.key(self.data[smallest]):
                 smallest=r
-        #         self.data[r].position = smallest
-        #         self.data[smallest].position = r
-        #     else:
-        #         self.data[r].position = r
-        #         self.data[smallest].position = smallest
-        if l<=self.aHeapsize : self.data[smallest].position = smallest
-        if l<=self.aHeapsize : self.data[l].position = l
-        if r<=self.aHeapsize: self.data[r].position = r
+                self.data[r].position = smallest
+                self.data[smallest].position = r
+            else:
+                self.data[r].position = r
+                self.data[smallest].position = smallest
+        else:
+            self.data[smallest] = i
+        # if smallest<=self.aHeapsize : self.data[smallest].position = smallest
+        # if l<=self.aHeapsize : self.data[l].position = l
+        # if r<=self.aHeapsize: self.data[r].position = r
 
         if smallest != i:
             self.data[smallest],self.data[i]=self.data[i],self.data[smallest]
@@ -68,11 +72,11 @@ class MinHeap:
         while(loc_i>=0):
             self.min_heapify(loc_i)
             loc_i-=1
-        for x in self.data:
-            try:
-                x.position
-            except Exception as e:
-                print("position not assigned ",e, x.name)
+        # for x in self.data:
+        #     try:
+        #         x.position
+        #     except Exception as e:
+        #         print("position not assigned ",e, x.name)
         return self.data
 
     def extractMin(self):                                                       #O(log(n))
@@ -99,8 +103,8 @@ class MinHeap:
 
         print("outside i is ", i)
         setKeyFunction(newValue)
+        print("data size %s parent %s" %(len(self.data),self.parent(i)))
         while i > 0 and self.key(self.data[self.parent(i)]) < self.key(self.data[i]):
-            print("i is ", i)
             self.data[self.parent(i)], self.data[i] = self.data[i], self.data[self.parent(i)]
             i = self.parent(i)
-            print("i is ", i)
+            print("inside")
