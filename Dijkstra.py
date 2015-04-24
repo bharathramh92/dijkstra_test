@@ -46,7 +46,7 @@ class Dijkstra:
 
         if nextVertex.d > minDVertex.d + transit_time:
             # nextVertex.d = minDVertex.d + transit_time
-            self.heap.heapDecreaseKey(nextVertex, nextVertex.setKeyForHeap,minDVertex.d + transit_time)
+            self.heap.heapDecreaseKey(nextVertex, nextVertex.setKeyForHeap, minDVertex.d + transit_time)
             nextVertex.pi = minDVertex
 
     def initializeSingleSource(self):                       #O(V)
