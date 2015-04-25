@@ -20,10 +20,10 @@ class Dijkstra:
 
         self.heap = MinHeap(Q, key = lambda vertex : vertex.d)               #heap implementation using key as vertex.
 
-        while len(self.heap) >0:
-
-            # minDVertex = min(Q, key= lambda  v: v.d)                    #when using basic list, which uses O(n) as the running time.
-            # Q.remove(minDVertex)
+        # while len(self.heap) > 0:
+        while Q != None and len(Q) > 0:
+            minDVertex = min(Q, key= lambda  v: v.d)                    #when using basic list, which uses O(n) as the running time.
+            Q.remove(minDVertex)
 
             minDVertex = self.heap.extractMin()
 
@@ -45,8 +45,8 @@ class Dijkstra:
     def Relax(self, minDVertex, nextVertex, transit_time):
 
         if nextVertex.d > minDVertex.d + transit_time:
-            # nextVertex.d = minDVertex.d + transit_time
-            self.heap.heapDecreaseKey(nextVertex, nextVertex.setKeyForHeap, minDVertex.d + transit_time)
+            nextVertex.d = minDVertex.d + transit_time
+            # self.heap.heapDecreaseKey(nextVertex, nextVertex.setKeyForHeap, minDVertex.d + transit_time)
             nextVertex.pi = minDVertex
 
     def initializeSingleSource(self):                       #O(V)
