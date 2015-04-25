@@ -70,7 +70,7 @@ class MinHeap:
 
         # for x in self.data:
         #     print("data size is ", len(self.data),"d ", x.name, "values are " , x.d)
-        # min = self.data[0]
+        min = self.data[0]
         # print("min is ", min.name)
 
         # print("data zero th %s data heap-1 %s" %(self.data[0].name, self.data[self.aHeapsize -1].name))
