@@ -44,7 +44,7 @@ class MinHeap:
                 self.data[l].position = l
                 self.data[smallest].position = i
         else:
-            self.data[smallest] = i
+            self.data[i].position = i
 
         if r<=self.aHeapsize:
             if self.key(self.data[r])<self.key(self.data[smallest]):
@@ -55,7 +55,7 @@ class MinHeap:
                 self.data[r].position = r
                 self.data[smallest].position = smallest
         else:
-            self.data[smallest] = i
+            self.data[i].position = i
         # if smallest<=self.aHeapsize : self.data[smallest].position = smallest
         # if l<=self.aHeapsize : self.data[l].position = l
         # if r<=self.aHeapsize: self.data[r].position = r
@@ -81,7 +81,7 @@ class MinHeap:
 
     def extractMin(self):                                                       #O(log(n))
 
-        if self.aHeapsize < 0:
+        if self.aHeapsize < 1:
             return None
 
         min = self.data[0]
@@ -102,9 +102,13 @@ class MinHeap:
         i = node.position                                                          #index
 
         print("outside i is ", i)
-        setKeyFunction(newValue)
+        # setKeyFunction(newValue)
+        node.d = newValue
         print("data size %s parent %s" %(len(self.data),self.parent(i)))
         while i > 0 and self.key(self.data[self.parent(i)]) < self.key(self.data[i]):
             self.data[self.parent(i)], self.data[i] = self.data[i], self.data[self.parent(i)]
             i = self.parent(i)
             print("inside")
+
+    def __len__(self):
+        return self.aHeapsize

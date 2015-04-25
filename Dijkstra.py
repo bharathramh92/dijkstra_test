@@ -20,7 +20,7 @@ class Dijkstra:
 
         self.heap = MinHeap(Q, key = lambda vertex : vertex.d)               #heap implementation using key as vertex.
 
-        while Q != None and len(Q)>0:
+        while len(self.heap) >0:
 
             # minDVertex = min(Q, key= lambda  v: v.d)                    #when using basic list, which uses O(n) as the running time.
             # Q.remove(minDVertex)
