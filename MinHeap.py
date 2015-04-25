@@ -99,7 +99,7 @@ class MinHeap:
         # print("aHeapsize %s cur min name %s" %(self.aHeapsize, min.name))
         return min
 
-    def heapDecreaseKey(self, node, settingKeyFunction, newValue):
+    def heapDecreaseKey(self, node, newValue):
         if newValue >  self.key(node):                                             #new value should be smaller than the old one
             return None
 
@@ -107,7 +107,7 @@ class MinHeap:
             i = node.position
             # i = self.data.index(node)                                                         #index
             # print("index :", node.name, " is ", i)
-            settingKeyFunction[0] = newValue
+            # settingKeyFunction[0] = newValue
 
 
             # node.d = newValue

@@ -80,7 +80,7 @@ class main:
                 if self.printPath(source, destination) == "":
                     self.str = "No path found from "+ source.name + " to "+ destination.name
                 else:
-                    self.str += (" %.2f" % round(destination.d[0], 2))
+                    self.str += (" %.2f" % round(destination.d, 2))
                 print(self.str)
                 self.writeInFile(self.str)
             elif command == "quit":
