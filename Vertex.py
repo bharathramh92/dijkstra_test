@@ -29,7 +29,7 @@ class Vertex:
         try:
             self.adj.remove(self.getEdgeFromVertex(dest))
         except ValueError as e:
-            pass
+            print("Edge not found ")
 
     def reset(self):
         self.dist = sys.maxsize

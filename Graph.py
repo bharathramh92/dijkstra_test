@@ -13,9 +13,6 @@ class Graph:
         source.addEdge(Edges(source, destination, float(transit_time)))
         destination.addEdge(Edges(destination, source, float(transit_time)))
 
-    def addEdgeUniDirection(self, s, d, transit_time):
-        s.addEdge(Edges(s, d, float(transit_time)))
-
     def updateEdge(self, source, destination, transit_time):
         s = self.getVertex(source)
         d = self.getVertex(destination)
@@ -23,24 +20,40 @@ class Graph:
         if edge != None:
             edge.transit_time = float(transit_time)
         else :
-            self.addEdgeUniDirection(s, d, transit_time)
+            s.addEdge(Edges(s, d, float(transit_time)))
 
     def deleteEdge(self, source, destination):
         s = self.getVertex(source)
         d = self.getVertex(destination)
         s.deleteEdge(d)
 
-    def toggleEdgeStatus(self, sourceName, destinationName):
+    def upEdgeStatus(self, sourceName, destinationName):
         s = self.getVertex(sourceName)
         d = self.getVertex(destinationName)
         edge = s.getEdgeFromVertex(d)
         if edge != None:
-            edge.status = not edge.status
+            if not edge.status:
+                edge.status = not edge.status
 
-    def toggleVertexStatus(self, _vertex):
+    def downEdgeStatus(self, sourceName, destinationName):
+        s = self.getVertex(sourceName)
+        d = self.getVertex(destinationName)
+        edge = s.getEdgeFromVertex(d)
+        if edge != None:
+            if edge.status:
+                edge.status = not edge.status
+
+    def upVertexStatus(self, _vertex):
         s = self.getVertex(_vertex)
         if s != None:
-            s.status = not s.status
+            if not s.status:
+                s.status = not s.status
+
+    def downVertexStatus(self, _vertex):
+        s = self.getVertex(_vertex)
+        if s != None:
+            if s:
+                s.status = not s.status
 
     def getVertex(self, vertexName):
         try:

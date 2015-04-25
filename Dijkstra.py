@@ -20,10 +20,10 @@ class Dijkstra:
 
         self.heap = MinHeap(Q, key = lambda vertex : vertex.d)               #heap implementation using key as vertex.
 
-        # while len(self.heap) > 0:
-        while Q != None and len(Q) > 0:
-            minDVertex = min(Q, key= lambda  v: v.d)                    #when using basic list, which uses O(n) as the running time.
-            Q.remove(minDVertex)
+        while len(self.heap) > 0:
+        # while Q != None and len(Q) > 0:
+        #     minDVertex = min(Q, key= lambda  v: v.d)                    #when using basic list, which uses O(n) as the running time.
+        #     Q.remove(minDVertex)
 
             minDVertex = self.heap.extractMin()
 
@@ -32,21 +32,25 @@ class Dijkstra:
 
             S.append(minDVertex)
             for edge in minDVertex.adj:                                 #retrieving edges
-                if not edge.status :
+                # print("adjcnt item is ", edge.destination.name)
+                if not edge.status or not edge.destination.status:
                     continue                                            #skipping the edges which are down.
                 nextVertex = edge.destination           #retrieving destination vertex from edge data
                 transit_time = edge.transit_time
                 self.Relax(minDVertex, nextVertex, transit_time)
 
+        # for x in Q:
+        #     print("D values name %s d %s" %(x.name, x.d))
         return self.source, self.destination
 
 
 
     def Relax(self, minDVertex, nextVertex, transit_time):
-
-        if nextVertex.d > minDVertex.d + transit_time:
+        newValue = minDVertex.d + transit_time
+        if nextVertex.d > newValue:
             nextVertex.d = minDVertex.d + transit_time
-            # self.heap.heapDecreaseKey(nextVertex, nextVertex.setKeyForHeap, minDVertex.d + transit_time)
+            # print("for the vertex %s Adding %s %f %f " %(nextVertex.name, minDVertex.name,minDVertex.d , transit_time))
+            self.heap.heapDecreaseKey(nextVertex, nextVertex.setKeyForHeap, newValue)
             nextVertex.pi = minDVertex
 
     def initializeSingleSource(self):                       #O(V)

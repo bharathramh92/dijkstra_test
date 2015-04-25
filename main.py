@@ -53,13 +53,21 @@ class main:
                 tailvertex, headvertex = userInput[1],userInput[2]
                 graph.deleteEdge(tailvertex, headvertex)
 
-            elif command == "edgedown" or command == "edgeup":
+            elif command == "edgeup":
                 tailvertex, headvertex = userInput[1],userInput[2]
-                graph.toggleEdgeStatus(tailvertex, headvertex)
+                graph.upEdgeStatus(tailvertex, headvertex)
 
-            elif command == "vertexdown" or command == "vertexup":
+            elif command == "edgedown":
+                tailvertex, headvertex = userInput[1],userInput[2]
+                graph.downEdgeStatus(tailvertex, headvertex)
+
+            elif command == "vertexup":
                 vertex = userInput[1]
-                graph.toggleVertexStatus(vertex)
+                graph.upVertexStatus(vertex)
+
+            elif command == "vertexdown" :
+                vertex = userInput[1]
+                graph.downVertexStatus(vertex)
 
             elif command == "reachable":
                 BFS(graph).printReachableVerticesFromAllSource()

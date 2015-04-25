@@ -35,11 +35,11 @@ class MinHeap:
         # for x in self.data:
         #     print("current data " , x.name)
 
-        if l<=self.aHeapsize and  self.key(self.data[l])<self.key(self.data[i]):
-                smallest=l
+        if l<self.aHeapsize and self.key(self.data[l]) < self.key(self.data[i]):
+            smallest=l
 
-        if r<=self.aHeapsize and self.key(self.data[r])<self.key(self.data[smallest]):
-                smallest=r
+        if r<self.aHeapsize and self.key(self.data[r]) < self.key(self.data[smallest]):
+            smallest=r
 
         if smallest != i:
             self.data[smallest],self.data[i]=self.data[i],self.data[smallest]
@@ -49,12 +49,13 @@ class MinHeap:
 
     def build_heap(self):                                                       #O(n)
         # print("key is ", key)
-        self.aHeapsize = len(self.data) -1
+        self.aHeapsize = len(self.data)
         loc_i = self.parent(self.aHeapsize -1)
         while loc_i>=0:
             self.min_heapify(loc_i)
             loc_i-=1
         # self.markPosition()
+        # print("size after build heap ", len(self.data))
         return self.data
 
     # def markPosition(self):
@@ -67,14 +68,23 @@ class MinHeap:
         if self.aHeapsize < 1:
             return None
 
-        min = self.data[0]
-        # self.data.insert(0, self.data.pop(self.aHeapsize))
-                                                      #not possible to insert the last value to the first one directly
-        # self.data[0] = self.data[self.aHeapsize]
+        # for x in self.data:
+        #     print("data size is ", len(self.data),"d ", x.name, "values are " , x.d)
+        # min = self.data[0]
+        # print("min is ", min.name)
 
+        # print("data zero th %s data heap-1 %s" %(self.data[0].name, self.data[self.aHeapsize -1].name))
+        self.data[0] = self.data[self.aHeapsize-1]
+
+        # if len(self.data) > 1:                                              #not possible to insert the last value to the first one directly
+        #     self.data[0] = self.data.pop(self.aHeapsize-1)
+        # else:
+        #     self.data.pop(self.aHeapsize-1)
 
         self.aHeapsize -= 1
-        self.min_heapify(0)
+        if self.aHeapsize > 0:
+            self.min_heapify(0)
+        # print("aHeapsize %s cur min name %s" %(self.aHeapsize, min.name))
         return min
 
     def heapDecreaseKey(self, node, setKeyFunction, newValue):
@@ -83,9 +93,10 @@ class MinHeap:
 
         try:
             i = self.data.index(node)                                                         #index
-            # setKeyFunction(newValue)
-            node.d = newValue
-            while i > 0 and self.key(self.data[self.parent(i)]) < self.key(self.data[i]):
+            # print("index :", node.name, " is ", i)
+            setKeyFunction(newValue)
+            # node.d = newValue
+            while i > 0 and self.key(self.data[self.parent(i)]) > self.key(self.data[i]):
                 self.data[self.parent(i)], self.data[i] = self.data[i], self.data[self.parent(i)]
                 i = self.parent(i)
         except Exception as e:
