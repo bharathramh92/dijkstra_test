@@ -5,7 +5,7 @@ from Edges import *
 from Graph import *
 from MinHeap import *
 
-import sys
+import sys, operator
 
 class Dijkstra:
     def __init__(self):
@@ -50,7 +50,7 @@ class Dijkstra:
         if nextVertex.d > newValue:
             nextVertex.d = minDVertex.d + transit_time
             # print("for the vertex %s Adding %s %f %f " %(nextVertex.name, minDVertex.name,minDVertex.d , transit_time))
-            self.heap.heapDecreaseKey(nextVertex, newValue,)
+            self.heap.heapDecreaseKey(nextVertex, newValue)
             nextVertex.pi = minDVertex
 
     def initializeSingleSource(self):                       #O(V)

@@ -108,10 +108,11 @@ class MinHeap:
             # i = self.data.index(node)                                                         #index
             # print("index :", node.name, " is ", i)
             # settingKeyFunction[0] = newValue
-
+            # decreaseKeyFn(node, newValue)
 
             # node.d = newValue
             while i > 0 and self.key(self.data[self.parent(i)]) > self.key(self.data[i]):
+                self.data[self.parent(i)].position, self.data[i].position = self.data[i].position, self.data[self.parent(i)].position
                 self.data[self.parent(i)], self.data[i] = self.data[i], self.data[self.parent(i)]
                 i = self.parent(i)
         except Exception as e:
