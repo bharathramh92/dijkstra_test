@@ -19,10 +19,10 @@ class BFS:
         # Initialization
         for vertex in graph.vertexMap.values():
             vertex.color = WHITE
-            vertex.d = sys.maxsize
+            vertex.d[0] = sys.maxsize
             vertex.pi = None
         vertex.color = GREY
-        vertex.d = sys.maxsize
+        vertex.d[0] = sys.maxsize
         vertex.pi = None
 
         Q = []
@@ -36,7 +36,7 @@ class BFS:
                 # if edge.status == True:
                 if edge.status == True and edge.destination.color == WHITE:
                     edge.destination.color = GREY
-                    edge.destination.d = u.d + 1
+                    edge.destination.d[0] = u.d[0] + 1
                     edge.destination.pi = u
                     Q.append(edge.destination)
             # print("\t\t", u.name)

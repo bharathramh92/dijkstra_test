@@ -12,6 +12,7 @@ class Edges:
 
     def setTransitTime(self, transit_time):
         self.transit_time = transit_time
+        return True
 
     def __repr__(self):
         return "Edge data \nstatus : %s source : %s destination : %s transit_time : %s"\

@@ -9,12 +9,12 @@ class Vertex:
         self.name = name
         self.adj = []
         self.status = True
-        self.d = sys.maxsize
+        self.d = [sys.maxsize]
         self.pi = None
         self.reset()
 
     def setKeyForHeap(self, d):
-        self.d = d
+        self.d[0] = d
 
     def addEdge(self, edge):
         self.adj.append(edge)
@@ -37,7 +37,7 @@ class Vertex:
 
     def __repr__(self):
         return "\n\nVertex data \nname : %s adj : %s dist : %f status : %s prev : %s d: %s pi : %s"\
-               %(self.name, self.adj, self.dist, self.status, self.prev, self.d, self.pi)
+               %(self.name, self.adj, self.dist, self.status, self.prev, self.d[0], self.pi)
 
 
 

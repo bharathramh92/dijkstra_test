@@ -46,18 +46,18 @@ class Dijkstra:
 
 
     def Relax(self, minDVertex, nextVertex, transit_time):
-        newValue = minDVertex.d + transit_time
-        if nextVertex.d > newValue:
-            nextVertex.d = minDVertex.d + transit_time
+        newValue = minDVertex.d[0] + transit_time
+        if nextVertex.d[0] > newValue:
+            # nextVertex.d = minDVertex.d + transit_time
             # print("for the vertex %s Adding %s %f %f " %(nextVertex.name, minDVertex.name,minDVertex.d , transit_time))
-            self.heap.heapDecreaseKey(nextVertex, nextVertex.setKeyForHeap, newValue)
+            self.heap.heapDecreaseKey(nextVertex,   lambda x : x.d, newValue,)
             nextVertex.pi = minDVertex
 
     def initializeSingleSource(self):                       #O(V)
         for vertex in self.graph.vertexMap.values():
-            vertex.d = sys.maxsize
+            vertex.d[0] = sys.maxsize
             vertex.pi = None
-        self.source.d = 0
+        self.source.d[0] = 0
 
     def minPath(self, graph, source, destination):
         self.graph = graph
