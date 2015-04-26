@@ -30,9 +30,8 @@ class main:
 
             if userInput == None or len(userInput) == 0:
                 continue
-
+            self.writeInFile(" ".join(userInput))
             command = userInput.pop(0)
-            self.writeInFile(command)
             if command == "print":
                 if len(userInput) != 0:
                     print("print wont take argument.\nUsage :print")

@@ -43,15 +43,4 @@ class BFS:
     def updataGraph(self, graph):
         self.graph = graph
 
-    def printReachableVerticesFromAllSource(self):
-        # for current in sorted(self.graph.vertexMap.values()):                                         #use this line if sorting while printing is not required
-        for current in sorted(self.graph.vertexMap.values(), key = lambda x : x.name):                  #use this line if sorting while printing is required
-            self.BFS(self.graph, current)                               #Running time will be O(V(V+E))
-            if current.status != True:
-                continue
-            print(current.name)
 
-            # for x in sorted(self.graph.vertexMap.values(), key = lambda x : x.name):                  #use this line if sorting while printing is not required
-            for x in sorted(self.graph.vertexMap.values(), key = lambda x : x.name):                    #use this line if sorting while printing is required
-                if x.color == BLACK and x.status == True and x.name != current.name:
-                    print("  ", x.name)
