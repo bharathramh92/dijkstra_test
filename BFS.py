@@ -11,8 +11,7 @@ class BFS:
     def __init__(self, graph):
         self.graph = graph
 
-    def BFS(self, graph, source):
-
+    def BFS(self, graph, source):                                       #Running of BFS will be O(V+E)
         if source.status == False:
             return
 
@@ -29,41 +28,30 @@ class BFS:
         Q.append(source)
 
         while Q != None and len(Q) > 0:
-            # print("Q has the size ", len(Q))
-            # for x in Q:
-            #     print(x.name, " is present in Q")
             u = Q.pop(0)
             if u.status != True:
                 continue
-            # print("total edges are ", len(graph.vertexMap[u.name].adj))
             for edge in graph.vertexMap[u.name].adj:
-                # if edge.status == True:
 
                 if edge.status == True and edge.destination.color == WHITE:
                     edge.destination.color = GREY
                     edge.destination.d = u.d + 1
                     edge.destination.pi = u
                     Q.append(edge.destination)
-                    # print("appending ", edge.destination.name)
-            # print("\t\t", u.name)
             u.color = BLACK
 
     def updataGraph(self, graph):
         self.graph = graph
 
     def printReachableVerticesFromAllSource(self):
-        # data = sorted(self.graph.vertexMap.values(), key= lambda x : x.name)
-        for current in self.graph.vertexMap.values():                           #Current vertex
-            self.BFS(self.graph, current)
+        # for current in sorted(self.graph.vertexMap.values()):                                         #use this line if sorting while printing is not required
+        for current in sorted(self.graph.vertexMap.values(), key = lambda x : x.name):                  #use this line if sorting while printing is required
+            self.BFS(self.graph, current)                               #Running time will be O(V(V+E))
             if current.status != True:
                 continue
             print(current.name)
-            # _data = sorted(self.graph.vertexMap.values(), key= lambda x : x.name)
-            for x in self.graph.vertexMap.values():
-                # if x.color == GREY and x.status == True and x.name != current.name:
-                #     print("  ", x.name, " is grey node")
+
+            # for x in sorted(self.graph.vertexMap.values(), key = lambda x : x.name):                  #use this line if sorting while printing is not required
+            for x in sorted(self.graph.vertexMap.values(), key = lambda x : x.name):                    #use this line if sorting while printing is required
                 if x.color == BLACK and x.status == True and x.name != current.name:
                     print("  ", x.name)
-            # self.printPathFor(source)
-
-    # def printPathFor(self, source):

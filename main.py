@@ -11,7 +11,8 @@ from BFS import *
 import sys
 
 class main:
-
+    """ Initial graph can be populated by providing a text file with source, destination, and transit_time.
+    eg: Belk Grigg 1.2"""
     def __init__(self):
         self.outFile = open("output", 'w')
         filename = sys.argv[1]
@@ -20,7 +21,7 @@ class main:
         for line in f:
             split = line.split()
             graph.addEdge(split[0], split[1], split[2])
-
+        f.close()
         while(True):
             userInput = input().split()
 
@@ -87,6 +88,8 @@ class main:
                 sys.exit(0)
             else:
                 pass
+        self.outFile.close()
+
 
     def printPath(self, source, destination):
 

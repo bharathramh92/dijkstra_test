@@ -5,7 +5,7 @@ from Edges import *
 from Graph import *
 from MinHeap import *
 
-import sys, operator
+import sys
 
 class Dijkstra:
     def __init__(self):
@@ -22,7 +22,7 @@ class Dijkstra:
 
         while len(self.heap) > 0:
         # while Q != None and len(Q) > 0:
-        #     minDVertex = min(Q, key= lambda  v: v.d)                    #when using basic list, which uses O(n) as the running time.
+        #     minDVertex = min(Q, key= lambda  v: v.d)                    #If using basic list, which uses O(n) as the running time.
         #     Q.remove(minDVertex)
 
             minDVertex = self.heap.extractMin()
@@ -39,8 +39,6 @@ class Dijkstra:
                 transit_time = edge.transit_time
                 self.Relax(minDVertex, nextVertex, transit_time)
 
-        # for x in Q:
-        #     print("D values name %s d %s" %(x.name, x.d))
         return self.source, self.destination
 
 
@@ -48,9 +46,8 @@ class Dijkstra:
     def Relax(self, minDVertex, nextVertex, transit_time):
         newValue = minDVertex.d + transit_time
         if nextVertex.d > newValue:
-            nextVertex.d = minDVertex.d + transit_time
-            # print("for the vertex %s Adding %s %f %f " %(nextVertex.name, minDVertex.name,minDVertex.d , transit_time))
-            self.heap.heapDecreaseKey(nextVertex, newValue)
+            # nextVertex.d = minDVertex.d + transit_time
+            self.heap.heapDecreaseKey(nextVertex, newValue, nextVertex.setKeyForHeap)
             nextVertex.pi = minDVertex
 
     def initializeSingleSource(self):                       #O(V)

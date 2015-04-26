@@ -15,6 +15,7 @@ class Vertex:
 
     def setKeyForHeap(self, d):
         self.d = d
+        return True
 
     def addEdge(self, edge):
         self.adj.append(edge)
