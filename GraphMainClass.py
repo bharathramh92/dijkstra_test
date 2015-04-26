@@ -34,6 +34,9 @@ class main:
             command = userInput.pop(0)
             self.writeInFile(command)
             if command == "print":
+                if len(userInput) != 0:
+                    print("print wont take argument.\nUsage :print")
+                    continue
                 for key,value in sorted(graph.vertexMap.items()):
 
                     if not graph.vertexMap[key].status:
