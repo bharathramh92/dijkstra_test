@@ -89,7 +89,7 @@ class MinHeap:
             return False
 
         i = node.position                                                       #index
-        setKeyFunction(newValue)
+        setKeyFunction(newValue)                                                #setting the key
         while i > 0 and self.key(self.data[self.parent(i)]) > self.key(self.data[i]):
             self.data[self.parent(i)].position, self.data[i].position = self.data[i].position, self.data[self.parent(i)].position
             self.data[self.parent(i)], self.data[i] = self.data[i], self.data[self.parent(i)]
