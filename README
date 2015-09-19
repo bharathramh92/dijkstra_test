@@ -1,0 +1,59 @@
+Entry point	: GraphMainClass.py
+
+The code can be compiled by the following command
+python3 GraphMainClass.py network.txt
+
+Output will be displayed in the console and the same will be saved in a file called output.
+
+Note: Output file is attached as well.
+----------------------------------------
+Files Breakdown
+
+GraphMainClass - Entry point of the program. This will check the input and call the functions accordingly. It does some of the printing of output as well.
+
+BFS - For "reachable", I am using BFS. Implementation of BFS method is written in this file.
+
+Dijkstra - Implementation of Dijksta algorithm.
+
+Edges - To Store edge details between two nodes.
+
+Vertex - To Store vertex details between two nodes. In adjacency list, it will store Edges objects.
+
+MinHeap - Priority Queue implementation for Min Heap.
+
+Graph - Implementation of graph data structure.
+
+----------------------------------------
+
+Algorithm for reachable
+
+BFS algorithm will discover all the reachable vertices from one source.
+I using the above concept to get the reachable vertices.
+Taking each vertices as the source vertex and running the BFS algorithm will solve the problem.
+
+ie,
+for each v in G,V:
+	runBFS(G, source = v)
+Then print the vertices by checking whether the vertex was discovered in that wave front or not.
+
+Time complexity,
+
+for  BFS -> O(V+E)
+Since running BFS for V times,
+Total time: O(V(V+E))
+
+----------------------------------------
+
+Graph Data Structure
+
+It is Map data structure with key as the Vertex name(String) and Value as Vertex object.
+Vertex object has details about that vertex. ie, name, status, adj list etc.
+In adj list, Edges object will stored.
+Each edge object will have source, destination, transit time and status data.
+
+----------------------------------------
+
+Comments
+
+All the given commands were tested and everything works fine.
+Error message for incorrect input will also be displayed.
